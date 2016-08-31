@@ -1,5 +1,8 @@
+#creates a json for D3 to visualze n degrees of kevin bacon
 import sqlite3
 import json
+
+depth = 3
 
 db = sqlite3.connect('imdb_data')
 
@@ -53,15 +56,16 @@ def runBacon(id, actor, depth):
 print("started")
 nodes["1443046"] = ["Kevin Bacon", "bacon"]
 
-runBacon(1443046, True, 3)
+runBacon(1443046, True, depth)
 nodeArray = []
 
 for node in nodes:
      nodeArray.append({'id' : node, 'name': nodes[node][0], "type": nodes[node][1]})
 
+jsonFileName = "graph" + str(depth) + ".json 
 
 graph = {"nodes": nodeArray, "links":egdes}
-f = open('graph3.json', 'w')
+f = open('filename', 'w')
 f.write(json.dumps(graph))
 
 print("complete")
